@@ -1,8 +1,10 @@
 @echo off
 set GODOT_DIR=godot
 set BRANCH_NAME=4.6
-set MY_LOCAL_SOURCE=C:/Users/Admin/MyLocalNugetSource/
+set MY_LOCAL_SOURCE=C:/Users/Admin/MyLocalNugetSource
+@echo on
 $env:SCRIPT_AES256_ENCRYPTION_KEY = Get-Content godot.gdkey
+
 
 git clone https://github.com/godotengine/godot.git
 cd godot
@@ -11,6 +13,9 @@ git checkout -b %BRANCH_NAME% origin/%BRANCH_NAME%
 git pull origin %BRANCH_NAME%
 
 ::  openssl rand -hex 32 > godot.gdkey 
+
+py ../Godot.Secure.AES-256.py ./
+
 
 py ./modules/mono/build_scripts/build_assemblies.py --godot-output-dir ./bin --push-nupkgs-local %MY_LOCAL_SOURCE%
 dotnet nuget add source %MY_LOCAL_SOURCE% --name MyLocalNugetSource
