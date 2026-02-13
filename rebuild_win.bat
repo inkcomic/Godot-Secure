@@ -12,7 +12,7 @@ git fetch origin %BRANCH_NAME%
 git checkout -b %BRANCH_NAME% origin/%BRANCH_NAME%
 git pull origin %BRANCH_NAME%
 
-::  openssl rand -hex 32 > godot.gdkey 
+openssl rand -hex 32 > godot/godot.gdkey 
 
 py ../Godot.Secure.AES-256.py ./
 
