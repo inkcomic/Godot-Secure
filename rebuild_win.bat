@@ -19,9 +19,11 @@ py ../Godot.Secure.AES-256.py ./
 
 py ./modules/mono/build_scripts/build_assemblies.py --godot-output-dir ./bin --push-nupkgs-local %MY_LOCAL_SOURCE%
 dotnet nuget add source %MY_LOCAL_SOURCE% --name MyLocalNugetSource
-bin/godot.windows.editor.x86_64.mono --headless --generate-mono-glue modules/mono/glue
 
 scons platform=windows target=editor module_mono_enabled=yes
+
+bin/godot.windows.editor.x86_64.mono --headless --generate-mono-glue modules/mono/glue
+
 
 scons platform=windows target=template_debug module_mono_enabled=yes
 scons platform=windows target=template_release module_mono_enabled=yes
