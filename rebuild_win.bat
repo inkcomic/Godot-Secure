@@ -16,14 +16,7 @@ openssl rand -hex 32 > godot/godot.gdkey
 
 py ../Godot.Secure.AES-256.py ./
 
-
-py ./modules/mono/build_scripts/build_assemblies.py --godot-output-dir ./bin --push-nupkgs-local %MY_LOCAL_SOURCE%
-dotnet nuget add source %MY_LOCAL_SOURCE% --name MyLocalNugetSource
-
 scons platform=windows target=editor module_mono_enabled=yes
-
-bin/godot.windows.editor.x86_64.mono --headless --generate-mono-glue modules/mono/glue
-
 
 scons platform=windows target=template_debug module_mono_enabled=yes
 scons platform=windows target=template_release module_mono_enabled=yes
@@ -33,3 +26,7 @@ scons platform=android target=template_release arch=arm64 generate_android_binar
 
 scons platform=android target=template_debug arch=arm32 module_mono_enabled=yes
 scons platform=android target=template_debug arch=arm64 generate_android_binaries=yes module_mono_enabled=yes
+
+bin/godot.windows.editor.x86_64.mono.exe --headless --generate-mono-glue modules/mono/glue
+py ./modules/mono/build_scripts/build_assemblies.py --godot-output-dir ./bin --push-nupkgs-local %MY_LOCAL_SOURCE%
+dotnet nuget add source %MY_LOCAL_SOURCE% --name MyLocalNugetSource
