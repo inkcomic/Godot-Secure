@@ -1,7 +1,7 @@
 @echo off
 set GODOT_DIR=godot
 set BRANCH_NAME=4.6
-set MY_LOCAL_SOURCE=C:/Users/Admin/MyLocalNugetSource
+set MY_LOCAL_SOURCE=C:\Users\Admin\MyLocalNugetSource
 @echo on
 $env:SCRIPT_AES256_ENCRYPTION_KEY = Get-Content godot.gdkey
 
